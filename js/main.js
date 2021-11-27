@@ -1,48 +1,74 @@
-$(window).load(function () {
-  $(".before-after").twentytwenty({
-    before_label: 'Без скинали', // Set a custom before label
-    after_label: 'Со скинали' // Set a custom after label
-  });
-  $(".before-slider").slick({
-    draggable: false,
-    dots: true,
-    dotsClass: 'before-slider__dots',
-    prevArrow: $('.arrow-left'),
-    nextArrow: $('.arrow-right')
-  });
-  $('.menu-button').on('click', function () {
-    $('.menu').toggleClass('menu_active');
-  });
+$(window).load(function() {
+    $(".before-after").twentytwenty({
+        before_label: 'Без скинали', // Set a custom before label
+        after_label: 'Со скинали' // Set a custom after label
+    });
+    $(".before-slider").slick({
+        draggable: false,
+        dots: true,
+        dotsClass: 'before-slider__dots',
+        prevArrow: $('.arrow-left'),
+        nextArrow: $('.arrow-right')
+    });
+    $(".reviews-slider").slick({
+        dots: true,
+        arrows: true,
+        swipe: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        draggable: false,
+        dots: false,
 
-  // Настройка select 
+        prevArrow: $('.reviews-arrows__left'),
+        nextArrow: $('.reviews-arrows__right'),
 
-  $('.select_checked').on('click', function () {
-    $('.select__dropdown').toggleClass('select__dropdown_open');
-  });
+        responsive: [{
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 2,
+            }
+        }, ],
+        responsive: [{
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 1,
+            }
+        }, ],
+    });
+    $('.menu-button').on('click', function() {
+        $('.menu').toggleClass('menu_active');
+    });
 
-  $('.select__option').on('click', function () {
-    var value = $(this).attr('data-value');
-    $('#select-type').val(value);
-    $('.select_checked').text(value);
-    $('.select__dropdown').toggleClass('select__dropdown_open');
-  });
+    // Настройка select 
 
-  $("a[href^='#']").click(function () {
-    var _href = $(this).attr("href");
-    $("html, body").animate({ scrollTop: $(_href).offset().top - 120 + "px" });
-    return false;
-  });
-  $("[type='tel']").mask("+7 (999) 999-99-99");
+    $('.select_checked').on('click', function() {
+        $('.select__dropdown').toggleClass('select__dropdown_open');
+    });
 
-  // Показывать карту только тогда когда пользователь докрутил до нее
+    $('.select__option').on('click', function() {
+        var value = $(this).attr('data-value');
+        $('#select-type').val(value);
+        $('.select_checked').text(value);
+        $('.select__dropdown').toggleClass('select__dropdown_open');
+    });
 
-  var reviews = $('.reviews');
-  var reviewsTop = reviews.offset().top;
-  $(window).bind('scroll', function () {
-    var windowTop = $(this).scrollTop();
-    if (windowTop > reviewsTop) {
-      $('#map').html('<script type="text/javascript" charset="utf-8" async src = "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab0532b33068c7eacd37be9322497833cf2d9d8d8b6bfcc8ee91d3d7aaf6250f0&amp;width=100%25&amp;height=410&amp;lang=ru_RU&amp;scroll=false"></script>')
-      $(window).unbind('scroll');
-    }
-  });
-}); 
+    $("a[href^='#']").click(function() {
+        var _href = $(this).attr("href");
+        $("html, body").animate({ scrollTop: $(_href).offset().top - 120 + "px" });
+        return false;
+    });
+    $("[type='tel']").mask("+7 (999) 999-99-99");
+
+    // Показывать карту только тогда когда пользователь докрутил до нее
+
+    var reviews = $('.reviews');
+    var reviewsTop = reviews.offset().top;
+    $(window).bind('scroll', function() {
+        var windowTop = $(this).scrollTop();
+        if (windowTop > reviewsTop) {
+            $('#map').html('<script type="text/javascript" charset="utf-8" async src = "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab0532b33068c7eacd37be9322497833cf2d9d8d8b6bfcc8ee91d3d7aaf6250f0&amp;width=100%25&amp;height=410&amp;lang=ru_RU&amp;scroll=false"></script>')
+            $(window).unbind('scroll');
+        }
+    });
+});
