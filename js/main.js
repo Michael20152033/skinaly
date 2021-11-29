@@ -23,18 +23,23 @@ $(window).load(function() {
         prevArrow: $('.reviews-arrows__left'),
         nextArrow: $('.reviews-arrows__right'),
 
+
         responsive: [{
-            breakpoint: 1200,
-            settings: {
-                slidesToShow: 2,
-            }
-        }, ],
-        responsive: [{
-            breakpoint: 767,
-            settings: {
-                slidesToShow: 1,
-            }
-        }, ],
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 2,
+                }
+
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 1,
+                }
+
+            },
+
+        ],
     });
     $('.menu-button').on('click', function() {
         $('.menu').toggleClass('menu_active');
@@ -71,4 +76,10 @@ $(window).load(function() {
             $(window).unbind('scroll');
         }
     });
+
+
+
+    $(".menu").click(function() {
+        $('.menu').removeClass('menu_active');
+       });
 });
